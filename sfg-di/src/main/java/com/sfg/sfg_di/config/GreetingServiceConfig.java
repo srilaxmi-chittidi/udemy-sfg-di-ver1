@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
+import com.sfg.sfg_di.repository.EnglishGreetingRepository;
+import com.sfg.sfg_di.repository.EnglishGreetingRepositoryImpl;
 import com.sfg.sfg_di.service.ConstructorInjectedGreetingServiceImpl;
 import com.sfg.sfg_di.service.GreetingServiceImpl;
 import com.sfg.sfg_di.service.PropertyInjectedGreetingServiceImpl;
@@ -35,10 +37,14 @@ public class GreetingServiceConfig {
 	GreetingServiceImpl greetingServiceImpl() {
 		return new GreetingServiceImpl();
 	}
+	@Bean
+    EnglishGreetingRepository englishGreetingRepository(){
+        return new EnglishGreetingRepositoryImpl();
+    }
 	@Profile({"EN","default"})
 	@Bean
-	i18NEnglishGreetingService i18NService() {
-		return new i18NEnglishGreetingService();
+	i18NEnglishGreetingService i18NService(EnglishGreetingRepository englishGreetingRepo) {
+		return new i18NEnglishGreetingService(englishGreetingRepo);
 	}
 	@Profile("ES")
 	@Bean("i18NService")
