@@ -34,14 +34,14 @@ public class SfgDiApplication {
 		System.out.println("My Constructor Controller : "+constructorController.sayHello("from constructor controller"));
 		
 		System.out.println("----------Bean Scopes");
-		SingletonBean s1 = new SingletonBean();
-		SingletonBean s2 = new SingletonBean();
+		SingletonBean s1 = ctx.getBean(SingletonBean.class);
+		SingletonBean s2 = ctx.getBean(SingletonBean.class);
 
 		System.out.println(s1.getBeanDetails());
 		System.out.println(s2.getBeanDetails());
 		
-		PrototypeBean p1 = new PrototypeBean();
-		PrototypeBean p2 = new PrototypeBean();
+		PrototypeBean p1 = ctx.getBean(PrototypeBean.class);
+		PrototypeBean p2 = ctx.getBean(PrototypeBean.class);
 		
 		System.out.println(p1.getBeanDetails());
 		System.out.println(p2.getBeanDetails());
