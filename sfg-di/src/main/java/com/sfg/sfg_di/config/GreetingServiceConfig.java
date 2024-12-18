@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
+import com.sfg.pets.service.PetService;
+import com.sfg.pets.service.PetServiceFactory;
 import com.sfg.sfg_di.repository.EnglishGreetingRepository;
 import com.sfg.sfg_di.repository.EnglishGreetingRepositoryImpl;
 import com.sfg.sfg_di.service.ConstructorInjectedGreetingServiceImpl;
@@ -50,5 +52,21 @@ public class GreetingServiceConfig {
 	@Bean("i18NService")
 	i18NSpanishGreetingService i18NSpanishService() {
 		return new i18NSpanishGreetingService();
+	}
+	
+	@Bean
+	PetServiceFactory petServiceFactory() {
+		return new PetServiceFactory();
+	}
+	
+	@Profile({"Dog","default"})
+	@Bean
+	PetService dogService(PetServiceFactory petServiceFactory) {
+		return petServiceFactory.getPetService("Dog");
+	}
+	
+	@Bean("Cat")
+	PetService catService(PetServiceFactory petServiceFactory) {
+		return petServiceFactory.getPetService("Cat");
 	}
 }
