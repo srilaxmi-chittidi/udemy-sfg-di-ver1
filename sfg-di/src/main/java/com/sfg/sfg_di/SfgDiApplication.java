@@ -9,6 +9,8 @@ import com.sfg.sfg_di.controller.MyController;
 import com.sfg.sfg_di.controller.PropertyInjectedController;
 import com.sfg.sfg_di.controller.SetterInjectedController;
 import com.sfg.sfg_di.controller.i18NController;
+import com.sfg.sfg_di.service.PrototypeBean;
+import com.sfg.sfg_di.service.SingletonBean;
 
 @SpringBootApplication
 public class SfgDiApplication {
@@ -30,6 +32,21 @@ public class SfgDiApplication {
 		
 		ConstructorInjectedController constructorController = (ConstructorInjectedController) ctx.getBean(ConstructorInjectedController.class);
 		System.out.println("My Constructor Controller : "+constructorController.sayHello("from constructor controller"));
+		
+		System.out.println("----------Bean Scopes");
+		SingletonBean s1 = new SingletonBean();
+		SingletonBean s2 = new SingletonBean();
+
+		System.out.println(s1.getBeanDetails());
+		System.out.println(s2.getBeanDetails());
+		
+		PrototypeBean p1 = new PrototypeBean();
+		PrototypeBean p2 = new PrototypeBean();
+		
+		System.out.println(p1.getBeanDetails());
+		System.out.println(p2.getBeanDetails());
+		
+
 		
 		
 	}
