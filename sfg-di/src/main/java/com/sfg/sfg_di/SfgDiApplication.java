@@ -9,6 +9,7 @@ import com.sfg.sfg_di.controller.MyController;
 import com.sfg.sfg_di.controller.PropertyInjectedController;
 import com.sfg.sfg_di.controller.SetterInjectedController;
 import com.sfg.sfg_di.controller.i18NController;
+import com.sfg.sfg_di.repository.FakeDataSource;
 import com.sfg.sfg_di.service.PrototypeBean;
 import com.sfg.sfg_di.service.SingletonBean;
 
@@ -46,7 +47,8 @@ public class SfgDiApplication {
 		System.out.println(p1.getBeanDetails());
 		System.out.println(p2.getBeanDetails());
 		
-
+		FakeDataSource fakeDB = ctx.getBean(FakeDataSource.class);
+		System.out.println(fakeDB.getUserName()+" "+fakeDB.getPassword()+" "+fakeDB.getDatasourceUrl());
 		
 		
 	}

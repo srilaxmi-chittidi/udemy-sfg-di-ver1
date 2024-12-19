@@ -1,30 +1,39 @@
 package com.sfg.sfg_di.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 
 import com.sfg.pets.service.PetService;
 import com.sfg.pets.service.PetServiceFactory;
 import com.sfg.sfg_di.repository.EnglishGreetingRepository;
 import com.sfg.sfg_di.repository.EnglishGreetingRepositoryImpl;
+import com.sfg.sfg_di.repository.FakeDataSource;
 import com.sfg.sfg_di.service.ConstructorInjectedGreetingServiceImpl;
 import com.sfg.sfg_di.service.GreetingServiceImpl;
 import com.sfg.sfg_di.service.PropertyInjectedGreetingServiceImpl;
-import com.sfg.sfg_di.service.SetterInjectedServiceImpl;
 import com.sfg.sfg_di.service.i18NEnglishGreetingService;
 import com.sfg.sfg_di.service.i18NSpanishGreetingService;
 
+@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfg-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
-//	@Bean
-//	SetterInjectedServiceImpl setterInjectedServiceImpl() {
-//		return new SetterInjectedServiceImpl();
-//	}
+	@Bean
+	FakeDataSource fakeDataSource(@Value("${db.userName}") String userName,
+									@Value("${db.password}")	String password,
+									@Value("${db.datasourceUrl}") String datasourceUrl) {
+		FakeDataSource fakeDB = new FakeDataSource();
+		fakeDB.setUserName(userName);;
+		fakeDB.setPassword(password);
+		fakeDB.setDatasourceUrl(datasourceUrl);
+		return fakeDB;
+	}
 	
 	@Bean
 	PropertyInjectedGreetingServiceImpl propertyInjectedGreetingServiceImpl() {
