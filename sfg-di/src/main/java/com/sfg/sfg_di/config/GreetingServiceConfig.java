@@ -1,5 +1,6 @@
 package com.sfg.sfg_di.config;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -17,6 +18,7 @@ import com.sfg.sfg_di.service.PropertyInjectedGreetingServiceImpl;
 import com.sfg.sfg_di.service.i18NEnglishGreetingService;
 import com.sfg.sfg_di.service.i18NSpanishGreetingService;
 
+@EnableConfigurationProperties(SfgConstructorConfig.class)
 @ImportResource("classpath:sfg-config.xml")
 @Configuration
 public class GreetingServiceConfig {
