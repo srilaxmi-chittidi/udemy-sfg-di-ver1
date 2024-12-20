@@ -1,0 +1,4 @@
+db:
+  userName: DevDataUser
+  password: DevDatapass
+  datasourceUrl: psotgres-dev-url

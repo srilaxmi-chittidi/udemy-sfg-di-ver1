@@ -1,0 +1,4 @@
+db:
+  userName: QaDataUser
+  password: QavDatapass
+  datasourceUrl: psotgres-db-qaurl

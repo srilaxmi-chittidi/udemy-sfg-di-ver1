@@ -1,0 +1,4 @@
+db:
+  userName: ProdDataUser
+  password: ProdDatapass
+  datasourceUrl: postgres-db-prod-url

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: sfg-di
+  profiles:
+    active: EN,dev
