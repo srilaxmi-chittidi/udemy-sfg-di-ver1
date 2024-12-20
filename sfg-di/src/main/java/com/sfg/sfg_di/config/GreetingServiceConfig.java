@@ -19,7 +19,6 @@ import com.sfg.sfg_di.service.PropertyInjectedGreetingServiceImpl;
 import com.sfg.sfg_di.service.i18NEnglishGreetingService;
 import com.sfg.sfg_di.service.i18NSpanishGreetingService;
 
-@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfg-config.xml")
 @Configuration
 public class GreetingServiceConfig {
